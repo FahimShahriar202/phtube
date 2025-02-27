@@ -66,11 +66,15 @@ const displayVideos = (videos) => {
     const card = document.createElement("div");
     card.classList = "card bg-base-70 w-70 shadow-sm";
     card.innerHTML = `
-     <figure class=" pt-3 h-[150px]">
+     <figure class=" pt-3 h-[150px] relative">
     <img
       src= ${video.thumbnail}
       alt="Shoes"
       class="rounded-xl h-full w-full object-cover" />
+
+      <span class="absolute right-2 bottom-2 bg-black text-white rounded p-1">${video.others.posted_date}</span>
+
+
   </figure>
   <div class="py-2 px-0 items-center text-center flex gap-2">
      <div>
@@ -82,7 +86,11 @@ const displayVideos = (videos) => {
 
         <div class="flex items-center gap-2">
           <p class="text-grey-400">${video.authors[0].profile_name}</p>
-          <img class="w-5 h-5" src="https://img.icons8.com/?size=96&id=D9RtvkuOe31p&format=png">
+
+          ${
+            video.authors[0].verified === true? 
+            `<img class="w-5 h-5" src="https://img.icons8.com/?size=96&id=D9RtvkuOe31p&format=png">` : ""
+          }
 
            
         </div>
