@@ -1,3 +1,25 @@
+// time conertion string
+function getTimeString(time){
+  // hr
+  const hour = parseInt(time/3600);
+  let remainingTime = time%3600;
+  // min
+  const min = parseInt(remainingTime/60);
+  let remainingSec = remainingTime%60;
+  // sec
+  const sec = remainingSec;
+
+
+  return `${hour}hr ${min}min ${sec}sec`;
+}
+
+
+// time conertion string end
+
+
+
+
+
 //1- fetch, catch and load categories on html
 
 // create loadCategories
@@ -72,7 +94,11 @@ const displayVideos = (videos) => {
       alt="Shoes"
       class="rounded-xl h-full w-full object-cover" />
 
-      <span class="absolute right-2 bottom-2 bg-black text-white rounded p-1">${video.others.posted_date}</span>
+      ${
+        video.others.posted_date?.length ===0? "":`<span class="absolute right-2 bottom-2 bg-black text-white rounded p-1">${getTimeString(video.others.posted_date)}</span>`
+      }
+
+      
 
 
   </figure>
