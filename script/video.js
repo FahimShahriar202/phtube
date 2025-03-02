@@ -38,6 +38,16 @@ const loadCategories = () => {
     .catch((error) => console.log(error));
 }
 
+// removeActiveClass()
+const removeActiveClass = ()=>{
+  const buttons = document.getElementsByClassName('category-btn');
+
+  for (let btn of buttons){
+    btn.classList.remove('active');
+  }
+}
+// removeActiveClass() end
+
 // loadCategoryVideos
 loadCategoryVideos = (id)=>{
   
@@ -49,7 +59,18 @@ loadCategoryVideos = (id)=>{
   .then((res) => res.json())
 
   // the json object is a data now
-  .then((data) => displayVideos(data.category))
+  .then((data) =>
+    { 
+      // shobaike shorao
+      removeActiveClass();
+
+      const activeBtn = document.getElementById(`btn-${id}`);
+
+      activeBtn.classList.add("active");
+
+
+      displayVideos(data.category);
+    } )
 
   // if not fetched er get error
   .catch((error) => console.log(error));
@@ -68,7 +89,7 @@ const displayCategories = (categories) => {
 
     buttonContainer.innerHTML = 
     `
-      <button onclick ="loadCategoryVideos(${item.category_id})" class = "btn">
+      <button onclick ="loadCategoryVideos(${item.category_id})" class = "btn category-btn" id="btn-${item.category_id}">
        ${item.category}
       </button>
     `
@@ -175,6 +196,11 @@ const displayVideos = (videos) => {
 
 // loadVideos end
 
+
+
+
+// search portion
+// search portion end
 
 
 // testing
